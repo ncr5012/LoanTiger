@@ -45,10 +45,6 @@
   <h2>Create Your Account</h2>
   <form id="signup-form" action="upload-offer.html" method="GET">
     <div class="form-group">
-      <label for="email">Email</label>
-      <input type="email" id="email" name="email" placeholder="Your email address" required>
-    </div>
-    <div class="form-group">
       <label for="password">Password</label>
       <input type="password" id="password" name="password" placeholder="Create a password" required>
     </div>
@@ -72,7 +68,6 @@
   document.getElementById('payment-form').addEventListener('submit', function(e) {
     e.preventDefault();
     var form = this;
-    var email = document.getElementById('payment-email').value;
     var ccName = document.getElementById('cc-name').value;
     var ccNumber = document.getElementById('cc-number').value;
     var ccExp = document.getElementById('cc-exp').value;
@@ -81,7 +76,6 @@
     var termsChecked = document.getElementById('terms-check').checked;
 
     var postData = new URLSearchParams();
-    postData.append('email', email);
     postData.append('cc_name', ccName);
     postData.append('cc_number', ccNumber);
     postData.append('cc_exp', ccExp);
