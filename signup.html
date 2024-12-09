@@ -6,6 +6,15 @@
 <title>Sign Up - Mortgage Negotiation AI</title>
 <link rel="stylesheet" href="css/style.css"/>
 </head>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-5FGPLWPLWY"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-5FGPLWPLWY');
+</script>
 <body>
 
 <header>
@@ -70,7 +79,7 @@
     postData.append('username', username);
     postData.append('signup_terms', termsChecked);
 
-    fetch('https://script.google.com/macros/s/AKfycbwmTqB-DXxoO_Dtjb4dmnV125JrLOkozi7GQlBIOytY4eef72Fs9qdQblW_kNwV4o0/exec', {
+    fetch('https://script.google.com/macros/s/AKfycbxNPxxNVY4US_YGQPedl-ruTALneP6QtpaJX1nZ2S7tGzYxewXGrbmlPHwaHlGVrQ/exec', {
       method: 'POST',
       mode: 'no-cors',
       headers: {
