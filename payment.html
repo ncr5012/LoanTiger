@@ -17,11 +17,11 @@
 </script>
 <body>
 
-<header>
-  <div class="container">
-    <h1>LoanTiger</h1>
-  </div>
-</header>
+  <header>
+    <div class="container">
+      <h1><img src="images/icon.png" alt="Company Logo" style="height:150px; vertical-align:middle;"> AI Negotiation Services</h1>
+    </div>
+  </header>
 
 <nav>
   <div class="container">
@@ -44,11 +44,6 @@
 
   <form id="payment-form" action="start-calls.html" method="GET">
     <!-- Include email again so we know which row to update -->
-    <div class="form-group">
-      <label for="payment-email">Email (must match the one used at sign up)</label>
-      <input type="email" id="payment-email" name="payment-email" placeholder="Your email address" required>
-    </div>
-
     <div class="form-group">
       <label for="cc-name">Name on Card</label>
       <input type="text" id="cc-name" name="cc-name" placeholder="John Doe" required>
@@ -92,7 +87,6 @@
     e.preventDefault();
 
     var form = this;
-    var email = document.getElementById('payment-email').value;
     var ccName = document.getElementById('cc-name').value;
     var ccNumber = document.getElementById('cc-number').value;
     var ccExp = document.getElementById('cc-exp').value;
@@ -102,7 +96,6 @@
 
     var postData = new URLSearchParams();
     postData.append('action', 'payment');
-    postData.append('email', email);
     postData.append('cc_name', ccName);
     postData.append('cc_number', ccNumber);
     postData.append('cc_exp', ccExp);
