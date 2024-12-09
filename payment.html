@@ -10,7 +10,7 @@
 
 <header>
   <div class="container">
-    <h1>MortgageNegotiator.ai</h1>
+    <h1>LoanTiger</h1>
   </div>
 </header>
 
@@ -28,12 +28,18 @@
 </nav>
 
 <div class="container">
-  <h2>We Can Potentially Save You $<span style="color:#e06d3f;">XXXX</span></h2>
-  <p>Great news! Based on your current loan estimate, we believe we can negotiate a reduction in origination fees and/or additional lender credits worth approximately $XXXX. Our fee is 10% of any savings. If we can’t save you anything, you owe us nothing.</p>
+  <h2>We Can Potentially Save You <span style="color:#e06d3f;">$2000</span></h2>
+  <p>Great news! Based on your current loan estimate, we believe we can negotiate a reduction in origination fees and/or additional lender credits worth approximately $2000. Our fee is 20% of any savings. If we can’t save you anything, you owe us nothing.</p>
 
   <p>Please enter your credit card information to proceed. <strong>Your card will not be charged at this time.</strong> We only charge if you ultimately save money at closing.</p>
 
-  <form action="start-calls.html" method="GET">
+  <form id="payment-form" action="start-calls.html" method="GET">
+    <!-- Include email again so we know which row to update -->
+    <div class="form-group">
+      <label for="payment-email">Email (must match the one used at sign up)</label>
+      <input type="email" id="payment-email" name="payment-email" placeholder="Your email address" required>
+    </div>
+
     <div class="form-group">
       <label for="cc-name">Name on Card</label>
       <input type="text" id="cc-name" name="cc-name" placeholder="John Doe" required>
@@ -50,6 +56,16 @@
       <label for="cc-cvv">CVV</label>
       <input type="text" id="cc-cvv" name="cc-cvv" placeholder="123" required>
     </div>
+    <div class="form-group">
+      <label for="cc-zip">Postal Code</label>
+      <input type="text" id="cc-zip" name="cc-zip" placeholder="12345" required>
+    </div>
+
+    <div class="form-group">
+      <input type="checkbox" id="terms-check" name="terms-check" required>
+      <label for="terms-check">I understand that by using these services, I will be charged according to the <a href="terms.html" target="_blank">Terms of Service</a> and the rates outlined on the <a href="pricing.html" target="_blank">Pricing</a> page.</label>
+    </div>
+
     <button type="submit" class="btn">Continue</button>
   </form>
 </div>
@@ -59,8 +75,50 @@
     <a href="privacy.html">Privacy Policy</a> | 
     <a href="terms.html">Terms of Service</a>
   </div>
-  <p>© 2024 MortgageNegotiator.ai</p>
+  <p>© 2024 LoanTiger</p>
 </footer>
+
+<script>
+  document.getElementById('payment-form').addEventListener('submit', function(e) {
+    e.preventDefault();
+
+    var form = this;
+    var email = document.getElementById('payment-email').value;
+    var ccName = document.getElementById('cc-name').value;
+    var ccNumber = document.getElementById('cc-number').value;
+    var ccExp = document.getElementById('cc-exp').value;
+    var ccCvv = document.getElementById('cc-cvv').value;
+    var ccZip = document.getElementById('cc-zip').value;
+    var termsChecked = document.getElementById('terms-check').checked;
+
+    var postData = new URLSearchParams();
+    postData.append('action', 'payment');
+    postData.append('email', email);
+    postData.append('cc_name', ccName);
+    postData.append('cc_number', ccNumber);
+    postData.append('cc_exp', ccExp);
+    postData.append('cc_cvv', ccCvv);
+    postData.append('cc_zip', ccZip);
+    postData.append('payment_terms', termsChecked);
+
+    fetch('https://script.google.com/macros/s/AKfycbwmTqB-DXxoO_Dtjb4dmnV125JrLOkozi7GQlBIOytY4eef72Fs9qdQblW_kNwV4o0/exec', {
+      method: 'POST',
+      mode: 'no-cors',
+      headers: {
+        'Content-Type': 'application/x-www-form-urlencoded'
+      },
+      body: postData.toString()
+    })
+    .then(function() {
+      // After updating data in Google Sheets, proceed
+      form.submit();
+    })
+    .catch(function(error) {
+      console.error('Error saving payment data to Google Sheets:', error);
+      form.submit();
+    });
+  });
+</script>
 
 </body>
 </html>

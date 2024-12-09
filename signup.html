@@ -10,7 +10,7 @@
 
 <header>
   <div class="container">
-    <h1><img src="images/logo.png" alt="Company Logo" style="height:50px; vertical-align:middle;"> MortgageNegotiator.ai</h1>
+    <h1><img src="images/logo.png" alt="Company Logo" style="height:50px; vertical-align:middle;"> LoanTiger</h1>
   </div>
 </header>
 
@@ -29,17 +29,17 @@
 
 <div class="container">
   <h2>Create Your Account</h2>
-  <form action="upload-offer.html" method="GET">
+  <form id="signup-form" action="upload-offer.html" method="GET">
     <div class="form-group">
-      <label for="username">Username</label>
-      <input type="text" id="username" name="username" placeholder="Create a username" required>
+      <label for="email">Email</label>
+      <input type="email" id="email" name="email" placeholder="Your email address" required>
     </div>
     <div class="form-group">
       <label for="password">Password</label>
       <input type="password" id="password" name="password" placeholder="Create a password" required>
     </div>
     <div class="form-group">
-      <input type="checkbox" id="terms" required>
+      <input type="checkbox" id="terms" name="signup-terms">
       <label for="terms">I agree to the <a href="terms.html" target="_blank">Terms of Service</a> and <a href="privacy.html" target="_blank">Privacy Policy</a></label>
     </div>
     <button type="submit" class="btn">Continue</button>
@@ -51,8 +51,43 @@
     <a href="privacy.html">Privacy Policy</a> | 
     <a href="terms.html">Terms of Service</a>
   </div>
-  <p>© 2024 MortgageNegotiator.ai</p>
+  <p>© 2024 LoanTiger</p>
 </footer>
+
+<script>
+  document.getElementById('signup-form').addEventListener('submit', function(e) {
+    e.preventDefault();
+
+    var form = this;
+    var email = document.getElementById('email').value;
+    var username = "N/A";
+    var termsChecked = document.getElementById('terms').checked; // True/False
+
+    // Send data to Google Sheets
+    var postData = new URLSearchParams();
+    postData.append('action', 'signup');
+    postData.append('email', email);
+    postData.append('username', username);
+    postData.append('signup_terms', termsChecked);
+
+    fetch('https://script.google.com/macros/s/AKfycbwmTqB-DXxoO_Dtjb4dmnV125JrLOkozi7GQlBIOytY4eef72Fs9qdQblW_kNwV4o0/exec', {
+      method: 'POST',
+      mode: 'no-cors',
+      headers: {
+        'Content-Type': 'application/x-www-form-urlencoded'
+      },
+      body: postData.toString()
+    })
+    .then(function() {
+      // After saving to Google Sheets, proceed with the form navigation
+      form.submit();
+    })
+    .catch(function(error) {
+      console.error('Error saving signup data to Google Sheets:', error);
+      form.submit();
+    });
+  });
+</script>
 
 </body>
 </html>
