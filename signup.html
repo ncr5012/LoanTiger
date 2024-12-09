@@ -1,3 +1,8 @@
+<!-- HTML CODE (copy and paste this into your .html file)
+     Replace the fetch URL with the exact URL you got after deploying the Google Apps Script as a Web App.
+     Do not change the parameter names since they match the script code above.
+-->
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -48,7 +53,7 @@
       <input type="password" id="password" name="password" placeholder="Create a password" required>
     </div>
     <div class="form-group">
-      <input type="checkbox" id="terms" name="signup-terms">
+      <input type="checkbox" id="terms" name="signup_terms">
       <label for="terms">I agree to the <a href="terms.html" target="_blank">Terms of Service</a> and <a href="privacy.html" target="_blank">Privacy Policy</a></label>
     </div>
     <button type="submit" class="btn">Continue</button>
@@ -69,17 +74,14 @@
 
     var form = this;
     var email = document.getElementById('email').value;
-    var username = "N/A";
-    var termsChecked = document.getElementById('terms').checked; // True/False
+    var termsChecked = document.getElementById('terms').checked; 
 
-    // Send data to Google Sheets
     var postData = new URLSearchParams();
-    postData.append('action', 'signup');
     postData.append('email', email);
-    postData.append('username', username);
     postData.append('signup_terms', termsChecked);
 
-    fetch('https://script.google.com/macros/s/AKfycbxNPxxNVY4US_YGQPedl-ruTALneP6QtpaJX1nZ2S7tGzYxewXGrbmlPHwaHlGVrQ/exec', {
+    // Replace the URL below with your actual deployed Web App URL from Apps Script
+    fetch('https://script.google.com/macros/s/AKfycbxCy9jXm1Wca9vHChYyJ-eMvZ7a1V4RDtbl7O_hJQfNsXNnGwWr_uYsU8plem0Iow/exec', {
       method: 'POST',
       mode: 'no-cors',
       headers: {
@@ -88,7 +90,6 @@
       body: postData.toString()
     })
     .then(function() {
-      // After saving to Google Sheets, proceed with the form navigation
       form.submit();
     })
     .catch(function(error) {
