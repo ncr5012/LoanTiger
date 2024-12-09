@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Estimated Savings & Payment Info - Mortgage Negotiation AI</title>
+<link rel="stylesheet" href="css/style.css"/>
+</head>
+<body>
+
+<header>
+  <div class="container">
+    <h1>MortgageNegotiator.ai</h1>
+  </div>
+</header>
+
+<nav>
+  <div class="container">
+    <ul>
+      <li><a href="index.html">Home</a></li>
+      <li><a href="services.html">Services</a></li>
+      <li><a href="pricing.html">Pricing</a></li>
+      <li><a href="about.html">About Us</a></li>
+      <li><a href="blog.html">Blog</a></li>
+      <li><a href="contact.html">Contact</a></li>
+    </ul>
+  </div>
+</nav>
+
+<div class="container">
+  <h2>We Can Potentially Save You $<span style="color:#e06d3f;">XXXX</span></h2>
+  <p>Great news! Based on your current loan estimate, we believe we can negotiate a reduction in origination fees and/or additional lender credits worth approximately $XXXX. Our fee is 10% of any savings. If we can’t save you anything, you owe us nothing.</p>
+
+  <p>Please enter your credit card information to proceed. <strong>Your card will not be charged at this time.</strong> We only charge if you ultimately save money at closing.</p>
+
+  <form action="start-calls.html" method="GET">
+    <div class="form-group">
+      <label for="cc-name">Name on Card</label>
+      <input type="text" id="cc-name" name="cc-name" placeholder="John Doe" required>
+    </div>
+    <div class="form-group">
+      <label for="cc-number">Card Number</label>
+      <input type="text" id="cc-number" name="cc-number" placeholder="•••• •••• •••• ••••" required>
+    </div>
+    <div class="form-group">
+      <label for="cc-exp">Expiration (MM/YY)</label>
+      <input type="text" id="cc-exp" name="cc-exp" placeholder="MM/YY" required>
+    </div>
+    <div class="form-group">
+      <label for="cc-cvv">CVV</label>
+      <input type="text" id="cc-cvv" name="cc-cvv" placeholder="123" required>
+    </div>
+    <button type="submit" class="btn">Continue</button>
+  </form>
+</div>
+
+<footer class="footer">
+  <div class="footer-links">
+    <a href="privacy.html">Privacy Policy</a> | 
+    <a href="terms.html">Terms of Service</a>
+  </div>
+  <p>© 2024 MortgageNegotiator.ai</p>
+</footer>
+
+</body>
+</html>
