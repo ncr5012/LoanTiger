@@ -19,7 +19,7 @@
 
 <header>
   <div class="container">
-    <h1>MortgageNegotiator.ai</h1>
+    <h1>LoanTiger</h1>
   </div>
 </header>
 
@@ -41,11 +41,19 @@
   <p>Please upload your current loan estimate here. Our AI will analyze it and determine how we can save you money. We’ll focus on reducing origination fees and negotiating lender concessions while keeping your interest rate and points steady.</p>
   <p>Once we have your information, we'll show you how much you could save. Remember, we only get paid if you save.</p>
 
-  <div class="upload-area">
-    <p>Drag & Drop Your Loan Estimate PDF or</p>
-    <button class="btn">Select File</button>
-  </div>
+  <!-- Simple file upload form that emails the file to you -->
+  <form action="https://formsubmit.co/YOUR_EMAIL_HERE" method="POST" enctype="multipart/form-data">
+    <!-- Required hidden field for FormSubmit -->
+    <input type="hidden" name="_captcha" value="false">
+    
+    <div class="upload-area">
+      <p>Upload Your Loan Estimate PDF</p>
+      <input type="file" name="file" accept="application/pdf" required>
+    </div>
+    <button class="btn" type="submit">Submit</button>
+  </form>
 
+  <br>
   <a href="payment.html" class="btn">Continue</a>
 </div>
 
@@ -54,7 +62,7 @@
     <a href="privacy.html">Privacy Policy</a> | 
     <a href="terms.html">Terms of Service</a>
   </div>
-  <p>© 2024 MortgageNegotiator.ai</p>
+  <p>© 2024 LoanTiger</p>
 </footer>
 
 </body>
