@@ -5,36 +5,8 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 <title>Upload Your Loan Estimate - Mortgage Negotiation AI</title>
 <link rel="stylesheet" href="css/style.css"/>
-
-<style>
-  /* Simple popup styles */
-  #popup {
-    display: none; 
-    position: fixed; 
-    z-index: 9999; 
-    left: 0; 
-    top: 0; 
-    width: 100%; 
-    height: 100%; 
-    overflow: auto; 
-    background-color: rgba(0,0,0,0.5); /* Black w/ opacity */
-  }
-
-  #popup-content {
-    background: #fff;
-    margin: 10% auto;
-    padding: 20px;
-    width: 90%;
-    max-width: 300px;
-    text-align: center;
-    border-radius: 5px;
-  }
-
-  #popup-content button {
-    margin-top: 10px;
-  }
-</style>
 </head>
+
 <!-- Google tag (gtag.js) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-5FGPLWPLWY"></script>
 <script>
@@ -48,7 +20,7 @@
 
 <header>
   <div class="container">
-    <h1>MortgageNegotiator.ai</h1>
+    <h1><img src="images/icon.png" alt="Company Logo" style="height:150px; vertical-align:middle;"> AI Negotiation Services</h1>
   </div>
 </header>
 
@@ -70,7 +42,6 @@
   <p>Please upload your current loan estimate here. Our AI will analyze it and determine how we can save you money. We’ll focus on reducing origination fees and negotiating lender concessions while keeping your interest rate and points steady.</p>
   <p>Once we have your information, we'll show you how much you could save. Remember, we only get paid if you save.</p>
 
-  <!-- Modified form without action, using AJAX -->
   <form id="uploadForm" enctype="multipart/form-data">
     <input type="hidden" name="_captcha" value="false">
     <div class="upload-area">
@@ -79,17 +50,6 @@
     </div>
     <button class="btn" type="submit">Submit</button>
   </form>
-
-  <a href="payment.html" class="btn">Continue</a>
-</div>
-
-<!-- Popup Modal -->
-<div id="popup">
-  <div id="popup-content">
-    <h3>Thank you!</h3>
-    <p>Your file was submitted successfully. We’ll analyze it and get back to you soon.</p>
-    <button id="closePopupBtn">Close</button>
-  </div>
 </div>
 
 <footer class="footer">
@@ -97,13 +57,11 @@
     <a href="privacy.html">Privacy Policy</a> | 
     <a href="terms.html">Terms of Service</a>
   </div>
-  <p>© 2024 MortgageNegotiator.ai</p>
+  <p>© 2024 LoanTiger</p>
 </footer>
 
 <script>
   const form = document.getElementById('uploadForm');
-  const popup = document.getElementById('popup');
-  const closePopupBtn = document.getElementById('closePopupBtn');
 
   form.addEventListener('submit', function(e) {
     e.preventDefault(); // Prevent default form submission
@@ -115,8 +73,8 @@
     })
     .then(response => {
       if (response.ok) {
-        // Show the popup
-        popup.style.display = 'block';
+        // Directly redirect to the payment page
+        window.location.href = "payment.html";
       } else {
         alert("There was an error submitting the form. Please try again.");
       }
@@ -125,10 +83,6 @@
       console.error("Error:", error);
       alert("There was an error submitting the form. Please try again.");
     });
-  });
-
-  closePopupBtn.addEventListener('click', function() {
-    popup.style.display = 'none';
   });
 </script>
 
