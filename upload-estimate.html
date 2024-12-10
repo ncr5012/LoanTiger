@@ -42,16 +42,18 @@
   <p>Once we have your information, we'll show you how much you could save. Remember, we only get paid if you save.</p>
 
   <!-- Simple file upload form that emails the file to you -->
-  <form action="https://formsubmit.co/YOUR_EMAIL_HERE" method="POST" enctype="multipart/form-data">
+  <form action="https://formsubmit.co/ncr5012@gmail.com" method="POST" enctype="multipart/form-data">
     <!-- Required hidden field for FormSubmit -->
     <input type="hidden" name="_captcha" value="false">
     
     <div class="upload-area">
-      <p>Upload Your Loan Estimate PDF</p>
-      <input type="file" name="file" accept="application/pdf" required>
+      <p>Upload Your Loan Estimate (PDF or image)</p>
+      <!-- Accept PDF and all common image types -->
+      <input type="file" name="file" accept=".pdf,image/*" required>
     </div>
     <button class="btn" type="submit">Submit</button>
   </form>
+  
 
   <br>
   <a href="payment.html" class="btn">Continue</a>
